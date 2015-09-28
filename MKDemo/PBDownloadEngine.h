@@ -13,7 +13,7 @@
 //-(id)initDownloadWithHost:(NSString *)host;
 
 /**
- *  <#Description#>
+ *  下载文件到本地指定位置
  *
  *  @param url               下载地址
  *  @param dealHandler       下载处理操作

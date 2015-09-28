@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.pbEngine = [[PBNetworkEngine alloc] initWithDefaultSettings];
-    self.downloadEngine = [[PBDownloadEngine alloc] initDownloadSetting];
+    self.downloadEngine = [[PBDownloadEngine alloc] init];
     return YES;
 }
 
