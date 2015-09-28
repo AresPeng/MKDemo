@@ -8,7 +8,13 @@
 
 #import "AppDelegate.h"
 
+
+
+
+
+
 @interface AppDelegate ()
+
 
 @end
 
@@ -17,6 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.pbEngine = [[PBNetworkEngine alloc] initWithDefaultSettings];
+    self.downloadEngine = [[PBDownloadEngine alloc] initDownloadSetting];
     return YES;
 }
 
