@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "NSString+Requestion.h"
-
+#import "PBTimeTools.h"
 @interface ViewController ()
 
 @property (nonatomic,strong)    UIProgressView *downloadProgessBar;
@@ -35,20 +35,29 @@
 //         DLog(@"%@", [error localizedDescription]);
 //    }];
     
-
+    //1403841724 === 2014-06-27 12:02:04
+    //1440684344 === 2015-08-27 22:05:44
+    //1443495082 === 2015/9/29 10:51:22
+    //1443449144 === 2015-09-28 22:05:44
+    
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 180, 300, 21)];
+    dateLabel.textAlignment = NSTextAlignmentCenter;
+    dateLabel.text = [PBTimeTools dateWithTimeStamp:@"1443456000"];
+    [PBTimeTools isThisYearWithTimeStamp:@"1403841724"];
+    [self.view addSubview:dateLabel];
+    
     _downloadProgessBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     _downloadProgessBar.frame = CGRectMake(20, 128, 320, 20);
     _downloadProgessBar.progress = 0.0;
     [self.view addSubview:_downloadProgessBar];
     
+    NSString *url = @"http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-6.3.4-osx-x86_64.dmg";
     MKNetworkEngine *engine = [[MKNetworkEngine alloc] init];
-    MKNetworkOperation *op = [engine operationWithURLString:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.4.dmg"];
-    
-    [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:@"/Users/dengjianping/Documents/QQ_V4.0.4.dmg"
-                                                            append:YES]];
+    MKNetworkOperation *op = [engine operationWithURLString:url];
+    [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:[@"/Users/dengjianping/Documents" stringByAppendingPathComponent:url.lastPathComponent] append:YES]];
     [op onDownloadProgressChanged:^(double progress) {
         
-        DLog(@"%.2f", progress*100.0);
+//        DLog(@"%.2f", progress*100.0);
         self.downloadProgessBar.progress = progress;
     }];
     [engine enqueueOperation:op];
